@@ -35,7 +35,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 className={classNames({
-                  "nav-link px-3 fs-3": true,
+                  "nav-link px-3 fs-4": true,
                   "link-secondary": currentPath != link.href,
                 })}
               >
