@@ -1,12 +1,9 @@
-import { prisma } from "@/prisma/client";
 import Link from "next/link";
-import IssueStatusBadge from "./IssueStatusBadge";
-import delay from "delay";
+import Skeleton from "../components/Skeleton";
 import IssuesToolbar from "./IssuesToolbar";
 
-export default async function IssuesPage() {
-  const issues = await prisma.issue.findMany();
-  await delay(3000);
+export default function LoadIssuesPage() {
+  const issues = [1, 2, 3, 4, 5];
 
   return (
     <div className="container mt-5">
@@ -32,21 +29,17 @@ export default async function IssuesPage() {
             </thead>
             <tbody>
               {issues.map((issue) => (
-                <tr key={issue.id}>
+                <tr key={issue}>
                   <td>
-                    {issue.title}
-
-                    <div className="d-block d-sm-none">
-                      <IssueStatusBadge status={issue.status} />
-                    </div>
+                    <Skeleton />
                   </td>
 
                   <td className="d-none d-sm-table-cell">
-                    <IssueStatusBadge status={issue.status} />
+                    <Skeleton />
                   </td>
 
                   <td className="d-none d-sm-table-cell">
-                    {issue.createdAt.toLocaleDateString()}
+                    <Skeleton />
                   </td>
                 </tr>
               ))}
