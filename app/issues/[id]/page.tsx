@@ -2,7 +2,7 @@ import { prisma } from "@/prisma/client";
 import { notFound } from "next/navigation";
 import delay from "delay";
 import IssueDetails from "./IssueDetails";
-import EditIssue from "./EditIssue";
+import EditIssueButton from "./EditIssueButton";
 
 export default async function IssueDetailsPage(context: {
   params: Promise<{ id: string }>;
@@ -18,7 +18,13 @@ export default async function IssueDetailsPage(context: {
     <div className="container mt-5">
       <IssueDetails issue={issue} />
 
-      <EditIssue issueId={issue.id} />
+      <div className="row">
+        <div className="col-12">
+          <div className="d-flex justify-content-end mt-3">
+            <EditIssueButton issueId={issue.id} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
