@@ -49,7 +49,7 @@ export default function NewIssuePage() {
             <div className="mb-3">
               <input
                 {...register("title")}
-                className="form-control fs-3 shadow-pri"
+                className="form-control fs-3 shadow-tile"
                 placeholder="Title"
               />
               <ErrorMessage>{errors.title?.message}</ErrorMessage>
@@ -58,7 +58,7 @@ export default function NewIssuePage() {
             <div className="mb-3">
               <textarea
                 {...register("description")}
-                className="form-control fs-3 shadow-pri"
+                className="form-control fs-3 shadow-tile"
                 rows={5}
                 placeholder="Description"
               />
@@ -67,7 +67,7 @@ export default function NewIssuePage() {
 
             <button
               type="submit"
-              className="btn btn-primary fs-3 mt-5 shadow-pri"
+              className="btn btn-primary fs-3 mt-5 shadow-tile"
               disabled={submitting}
             >
               <span className="d-flex align-items-center">

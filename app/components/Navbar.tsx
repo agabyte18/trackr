@@ -45,7 +45,7 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="col-md-3 text-end">
-          <button type="button" className="btn me-2 shadow-pri">
+          <button type="button" className="btn me-2 shadow-tile">
             <span className="fs-3 text-primary">
               <span className="d-flex align-items-center">
                 <FcGoogle />
