@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import delay from "delay";
 import IssueDetails from "./IssueDetails";
 import EditIssueButton from "./EditIssueButton";
+import DeleteIssueButton from "./DeleteIssueButton";
 
 export default async function IssueDetailsPage(context: {
   params: Promise<{ id: string }>;
@@ -20,6 +21,7 @@ export default async function IssueDetailsPage(context: {
 
       <div className="d-flex justify-content-end mt-3">
         <EditIssueButton issueId={issue.id} />
+        <DeleteIssueButton />
       </div>
     </div>
   );

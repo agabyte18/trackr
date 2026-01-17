@@ -3,9 +3,16 @@ import Link from "next/link";
 import IssueStatusBadge from "./IssueStatusBadge";
 import delay from "delay";
 import IssuesToolbar from "./IssuesToolbar";
+import { RxAvatar } from "react-icons/rx";
+
+export const dynamic = "force-dynamic";
 
 export default async function IssuesPage() {
-  const issues = await prisma.issue.findMany();
+  const issues = await prisma.issue.findMany({
+    orderBy: {
+      id: "asc",
+    },
+  });
   await delay(3000);
 
   return (
@@ -38,7 +45,8 @@ export default async function IssuesPage() {
                       href={`/issues/${issue.id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      {issue.title}
+                      <RxAvatar color="grey" size={44} />
+                      <span className="ms-2">{issue.title}</span>
                     </Link>
 
                     <div className="d-block d-sm-none">

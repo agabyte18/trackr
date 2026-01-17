@@ -12,7 +12,7 @@ export default function EditIssueButton({ issueId }: Props) {
       href={`/issues/${issueId}/edit`}
       className="btn btn-primary fs-3 shadow-tile"
     >
-      <MdEditNote /> Edit issue
+      <MdEditNote /> Edit
     </Link>
   );
 }

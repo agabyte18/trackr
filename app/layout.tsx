@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "@/app/components/Navbar";
+import BootstrapClient from "./components/BoostrapClient";
 
 const virgil = localFont({
   src: "../public/fonts/virgil.woff2",
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={virgil.className}>
         <Navbar />
         {children}
+        <BootstrapClient />
       </body>
     </html>
   );
