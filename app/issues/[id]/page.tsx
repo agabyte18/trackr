@@ -18,12 +18,8 @@ export default async function IssueDetailsPage(context: {
     <div className="container mt-5">
       <IssueDetails issue={issue} />
 
-      <div className="row">
-        <div className="col-12">
-          <div className="d-flex justify-content-end mt-3">
-            <EditIssueButton issueId={issue.id} />
-          </div>
-        </div>
+      <div className="d-flex justify-content-end mt-3">
+        <EditIssueButton issueId={issue.id} />
       </div>
     </div>
   );
