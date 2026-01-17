@@ -1,14 +1,14 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
+import { updateIssueSchema } from "@/app/validationSchemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createIssueSchema } from "@/app/validationSchemas";
-import ErrorMessage from "@/app/components/ErrorMessage";
-import Spinner from "@/app/components/Spinner";
-import { Issue } from "../generated/prisma/client";
+import { useForm } from "react-hook-form";
+import { Issue, Status } from "../generated/prisma/client";
 
 interface Props {
   issue: Issue;
@@ -20,18 +20,24 @@ export default function IssueForm({ issue }: Props) {
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
+  const statuses: { label: string; value: Status }[] = [
+    { label: "WIP", value: "IN_PROGRESS" },
+    { label: "Open", value: "OPEN" },
+    { label: "Closed", value: "CLOSED" },
+  ];
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(createIssueSchema),
+    resolver: zodResolver(updateIssueSchema),
   });
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await axios.post("/api/issues", data);
-      router.push("/issues");
+      await axios.patch(`/api/issues/${issue.id}`, data);
+      router.push(`/issues/${issue.id}`);
       setSubmitting(true);
     } catch (error) {
       setSubmitting(false);
@@ -63,6 +69,20 @@ export default function IssueForm({ issue }: Props) {
             </div>
 
             <div className="mb-3">
+              <select
+                {...register("status")}
+                defaultValue={issue.status}
+                className="fs-3 shadow-tile form-select"
+              >
+                {statuses.map(({ label, value }) => (
+                  <option key={label} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mb-3">
               <textarea
                 {...register("description")}
                 defaultValue={issue?.description}
@@ -79,7 +99,7 @@ export default function IssueForm({ issue }: Props) {
               disabled={submitting}
             >
               <span className="d-flex align-items-center">
-                Submit
+                Update
                 {submitting && <Spinner />}
               </span>
             </button>
