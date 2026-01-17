@@ -1,6 +1,6 @@
 import Navbar from "@/app/components/Navbar";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="container mt-5">
       <h1>Dashboard</h1>

@@ -34,7 +34,12 @@ export default async function IssuesPage() {
               {issues.map((issue) => (
                 <tr key={issue.id}>
                   <td>
-                    {issue.title}
+                    <Link
+                      href={`/issues/${issue.id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {issue.title}
+                    </Link>
 
                     <div className="d-block d-sm-none">
                       <IssueStatusBadge status={issue.status} />

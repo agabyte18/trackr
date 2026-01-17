@@ -19,7 +19,7 @@ export default function IssueStatusBadge({ status }: Props) {
   };
 
   return (
-    <span className={`fs-3 badge text-bg-${statusMap[status].skin}`}>
+    <span className={`fs-4 badge text-bg-${statusMap[status].skin}`}>
       {statusMap[status].label}
     </span>
   );
