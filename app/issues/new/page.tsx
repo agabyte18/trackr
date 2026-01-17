@@ -22,6 +22,17 @@ export default function NewIssuePage() {
     resolver: zodResolver(createIssueSchema),
   });
 
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await axios.post("/api/issues", data);
+      router.push("/issues");
+      setSubmitting(true);
+    } catch (error) {
+      setSubmitting(false);
+      setError("Oops, something went wrong.");
+    }
+  });
+
   return (
     <div className="container mt-5">
       <div className="row">
@@ -34,19 +45,7 @@ export default function NewIssuePage() {
             )}
           </div>
 
-          <form
-            onSubmit={handleSubmit(async (data) => {
-              try {
-                await axios.post("/api/issues", data);
-
-                router.push("/issues");
-                setSubmitting(true);
-              } catch (error) {
-                setSubmitting(false);
-                setError("Oops, something went wrong.");
-              }
-            })}
-          >
+          <form onSubmit={onSubmit}>
             <div className="mb-3">
               <input
                 {...register("title")}
