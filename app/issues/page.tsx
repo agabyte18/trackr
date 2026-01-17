@@ -45,12 +45,16 @@ export default async function IssuesPage() {
                       href={`/issues/${issue.id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      <RxAvatar color="grey" size={44} />
-                      <span className="ms-2">{issue.title}</span>
+                      <div className="d-flex mb-2">
+                        <RxAvatar color="grey" size={44} />
+                        <span className="ms-2">{issue.title}</span>
+                      </div>
                     </Link>
 
                     <div className="d-block d-sm-none">
-                      <IssueStatusBadge status={issue.status} />
+                      <div className="d-flex justify-content-end">
+                        <IssueStatusBadge status={issue.status} />
+                      </div>
                     </div>
                   </td>
 
