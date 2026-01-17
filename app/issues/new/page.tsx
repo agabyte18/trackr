@@ -1,5 +1,5 @@
-import IssueForm from "../IssueForm";
+import NewIssueForm from "../NewIssueForm";
 
 export default function NewIssuePage() {
-  return <IssueForm />;
+  return <NewIssueForm />;
 }
