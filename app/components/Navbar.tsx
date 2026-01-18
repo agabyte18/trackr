@@ -8,6 +8,7 @@ import { FaBugs } from "react-icons/fa6";
 import Link from "next/link";
 import { TfiDashboard } from "react-icons/tfi";
 import { useSession } from "next-auth/react";
+import Avatar from "./Avatar";
 
 export default function Navbar() {
   const { status, data: session } = useSession();
@@ -65,12 +66,13 @@ export default function Navbar() {
           )}
 
           {status == "authenticated" && (
-            <Link
+            <a
               href="/api/auth/signout"
-              className="fs-3 text-danger btn me-2 shadow-tile"
+              className="fs-4 text-danger btn me-2 shadow-tile"
             >
-              Logout
-            </Link>
+              <Avatar src={session.user!.image!} />
+              <span className="mx-3">Sign out</span>
+            </a>
           )}
         </div>
       </header>
