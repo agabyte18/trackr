@@ -49,11 +49,11 @@ export default function IssueForm({ issue }: Props) {
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-7">
-          <div className="mb-5">
+          <div className="mb-3">
             {error ? (
               <h1 className="text-danger">{error}</h1>
             ) : (
-              <h1>New Issue</h1>
+              <h1>Edit Issue</h1>
             )}
           </div>
 

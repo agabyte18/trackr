@@ -1,12 +1,18 @@
+import authOptions from "@/app/auth/authOptions";
 import { updateIssueSchema } from "@/app/validationSchemas";
 import { prisma } from "@/prisma/client";
 import delay from "delay";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
   req: NextRequest,
   context: { params: Promise<{ id: string }> },
 ) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) return NextResponse.json({}, { status: 401 });
+
   const body = await req.json();
   const result = updateIssueSchema.safeParse(body);
 
@@ -36,6 +42,10 @@ export async function DELETE(
   context: { params: Promise<{ id: string }> },
 ) {
   //
+  const session = await getServerSession(authOptions);
+
+  if (!session) return NextResponse.json({}, { status: 401 });
+
   const { id } = await context.params;
 
   await delay(7000);

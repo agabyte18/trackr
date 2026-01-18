@@ -61,7 +61,7 @@ export default function Navbar() {
             <Link href="/api/auth/signin" className="btn me-2 shadow-tile">
               <span className="d-flex align-items-center fs-3 text-primary">
                 <FcGoogle />
-                <span className="ms-2">Login</span>
+                <span className="ms-2 me-4">Login</span>
               </span>
             </Link>
           )}
@@ -69,7 +69,7 @@ export default function Navbar() {
           {status == "authenticated" && (
             <a
               href="/api/auth/signout"
-              className="fs-4 text-danger btn me-2 shadow-tile"
+              className="fs-3 text-danger btn me-2 shadow-tile"
             >
               <Avatar src={session.user!.image!} />
               <span className="mx-3">Sign out</span>
