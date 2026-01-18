@@ -4,11 +4,14 @@ import { AiFillBug } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { FcGoogle } from "react-icons/fc";
+import { FaBugs } from "react-icons/fa6";
+import Link from "next/link";
+import { TfiDashboard } from "react-icons/tfi";
 
 export default function Navbar() {
   const links = [
-    { label: "Dashboard", href: "/" },
-    { label: "Issues", href: "/issues" },
+    { label: "Dashboard", href: "/", icon: <TfiDashboard /> },
+    { label: "Issues", href: "/issues", icon: <FaBugs color="inherit" /> },
   ];
 
   const currentPath = usePathname();
@@ -31,16 +34,20 @@ export default function Navbar() {
         </div>
         <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
           {links.map((link) => (
-            <li key={link.label}>
-              <a
+            <li
+              className="mx-2 shadow-tile"
+              style={{ border: "1px solid grey", borderRadius: "100%" }}
+              key={link.label}
+            >
+              <Link
                 href={link.href}
                 className={classNames({
-                  "nav-link px-3 fs-4": true,
+                  "nav-link fs-4": true,
                   "link-secondary": currentPath != link.href,
                 })}
               >
-                {link.label}
-              </a>
+                {link.icon}
+              </Link>
             </li>
           ))}
         </ul>
