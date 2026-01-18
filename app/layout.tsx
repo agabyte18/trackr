@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "@/app/components/Navbar";
 import BootstrapClient from "./components/BoostrapClient";
+import AuthProvider from "./auth/Provider";
 
 const virgil = localFont({
   src: "../public/fonts/virgil.woff2",
 });
-
-const brico = Bricolage_Grotesque({});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={virgil.className}>
-        <Navbar />
-        {children}
-        <BootstrapClient />
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <BootstrapClient />
+        </AuthProvider>
       </body>
     </html>
   );

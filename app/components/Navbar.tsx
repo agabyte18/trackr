@@ -7,8 +7,11 @@ import { FcGoogle } from "react-icons/fc";
 import { FaBugs } from "react-icons/fa6";
 import Link from "next/link";
 import { TfiDashboard } from "react-icons/tfi";
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
+  const { status, data: session } = useSession();
+
   const links = [
     { label: "Dashboard", href: "/", icon: <TfiDashboard /> },
     { label: "Issues", href: "/issues", icon: <FaBugs color="inherit" /> },
@@ -52,14 +55,23 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="col-md-3 text-end">
-          <button type="button" className="btn me-2 shadow-tile">
-            <span className="fs-3 text-primary">
-              <span className="d-flex align-items-center">
+          {status == "unauthenticated" && (
+            <Link href="/api/auth/signin" className="btn me-2 shadow-tile">
+              <span className="d-flex align-items-center fs-3 text-primary">
                 <FcGoogle />
                 <span className="ms-2">Login</span>
               </span>
-            </span>
-          </button>
+            </Link>
+          )}
+
+          {status == "authenticated" && (
+            <Link
+              href="/api/auth/signout"
+              className="fs-3 text-danger btn me-2 shadow-tile"
+            >
+              Logout
+            </Link>
+          )}
         </div>
       </header>
     </div>
