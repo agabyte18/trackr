@@ -9,6 +9,7 @@ import Link from "next/link";
 import { TfiDashboard } from "react-icons/tfi";
 import { useSession } from "next-auth/react";
 import Avatar from "./Avatar";
+import Skeleton from "./Skeleton";
 
 export default function Navbar() {
   const { status, data: session } = useSession();
@@ -74,6 +75,8 @@ export default function Navbar() {
               <span className="mx-3">Sign out</span>
             </a>
           )}
+
+          {status == "loading" && <Skeleton />}
         </div>
       </header>
     </div>
