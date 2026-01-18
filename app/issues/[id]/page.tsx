@@ -21,7 +21,7 @@ export default async function IssueDetailsPage(context: {
 
       <div className="d-flex justify-content-end mt-3">
         <EditIssueButton issueId={issue.id} />
-        <DeleteIssueButton />
+        <DeleteIssueButton issueId={issue.id} />
       </div>
     </div>
   );

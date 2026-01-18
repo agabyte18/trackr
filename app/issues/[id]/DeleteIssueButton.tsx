@@ -1,12 +1,20 @@
-import Link from "next/link";
+"use client";
+
+import Spinner from "@/app/components/Spinner";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { BsTrashFill } from "react-icons/bs";
 
 interface Props {
-  issueId?: number;
+  issueId: number;
 }
 
-export default function EditIssueButton({ issueId }: Props) {
+export default function DeleteIssueButton({ issueId }: Props) {
   //
+  const [deleting, setDeleting] = useState(false);
+  const router = useRouter();
+
   return (
     <>
       {/* Modal Trigger */}
@@ -14,11 +22,22 @@ export default function EditIssueButton({ issueId }: Props) {
         className="ms-3 btn btn-danger fs-3 shadow-tile"
         data-bs-toggle="modal"
         data-bs-target="#deleteIssueModal"
+        disabled={deleting}
       >
-        <BsTrashFill /> Delete
+        {!deleting && (
+          <>
+            <BsTrashFill /> Delete
+          </>
+        )}
+
+        {deleting && (
+          <span className="d-flex align-items-center">
+            Delete <Spinner />
+          </span>
+        )}
       </button>
 
-      {/* Modal */}
+      {/* Delete Confirmation Modal */}
       <div
         className="modal modal-lg fade"
         id="deleteIssueModal"
@@ -37,6 +56,16 @@ export default function EditIssueButton({ issueId }: Props) {
                 Cancel
               </button>
               <button
+                onClick={async () => {
+                  try {
+                    setDeleting(true);
+                    await axios.delete(`/api/issues/${issueId}`);
+                    router.push("/issues");
+                    router.refresh();
+                  } catch (error) {
+                    setDeleting(false);
+                  }
+                }}
                 type="button"
                 className="fs-3 btn btn-danger shadow-tile"
                 data-bs-dismiss="modal"
