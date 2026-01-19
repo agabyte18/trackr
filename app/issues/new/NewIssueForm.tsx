@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
-import { Issue } from "../generated/prisma/client";
+import { Issue } from "@/app/generated/prisma/client";
 
 interface Props {
   issue?: Issue;
