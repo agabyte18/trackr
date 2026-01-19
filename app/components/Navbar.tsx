@@ -1,6 +1,6 @@
 "use client";
 
-import { AiFillBug } from "react-icons/ai";
+import { GiGoat } from "react-icons/gi";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { FcGoogle } from "react-icons/fc";
@@ -27,14 +27,10 @@ export default function Navbar() {
         <div className="col-md-3 mb-2 mb-md-0">
           <a
             href="/"
-            className="d-inline-flex link-body-emphasis text-decoration-none"
+            className="fs-2 gochi d-inline-flex link-body-emphasis text-decoration-none"
           >
             {/* Brand */}
-            <span className="fs-1 d-flex align-items-center">
-              Tr
-              <AiFillBug size={34} />
-              ckr
-            </span>
+            Opsgoat
           </a>
         </div>
         <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">

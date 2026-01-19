@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Gochi_Hand } from "next/font/google";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "@/app/components/Navbar";
 import BootstrapClient from "./components/BoostrapClient";
 import AuthProvider from "./auth/Provider";
+
+const gochi = Gochi_Hand({ weight: "400" });
 
 const virgil = localFont({
   src: "../public/fonts/virgil.woff2",
