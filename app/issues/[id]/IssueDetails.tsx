@@ -1,12 +1,17 @@
-import { Issue } from "@/app/generated/prisma/client";
+"use client";
+
+import Avatar from "@/app/components/Avatar";
+import { Issue, User } from "@/app/generated/prisma/client";
 import IssueStatusBadge from "../IssueStatusBadge";
 
 interface Props {
   issue: Issue;
+  user: User;
 }
 
-export default function IssueDetails({ issue }: Props) {
+export default function IssueDetails({ issue, user }: Props) {
   //
+
   return (
     <>
       <div className="row">
@@ -27,6 +32,12 @@ export default function IssueDetails({ issue }: Props) {
                 {issue.createdAt.toLocaleDateString()}
               </span>
             </div>
+          </div>
+
+          <div className="d-flex justify-content-start align-items-center">
+            <Avatar size="52px" src={user.image!} />
+
+            <span className="ms-3 fs-4">{user.email}</span>
           </div>
         </div>
 

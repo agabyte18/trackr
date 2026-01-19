@@ -19,9 +19,11 @@ export default async function IssueDetailsPage(context: {
 
   if (!issue) notFound();
 
+  const user = await prisma.user.findUnique({ where: { id: issue.userId! } });
+
   return (
     <div className="container mt-5">
-      <IssueDetails issue={issue} />
+      <IssueDetails user={user!} issue={issue} />
 
       {session && (
         <div className="d-flex justify-content-end mt-3">

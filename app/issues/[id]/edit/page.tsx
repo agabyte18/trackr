@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma/client";
-import EditIssueForm from "../../EditIssueForm";
+import EditIssueForm from "./EditIssueForm";
 import { notFound } from "next/navigation";
 
 export default async function EditIssuePage(context: {

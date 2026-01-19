@@ -1,4 +1,4 @@
-import NewIssueForm from "../NewIssueForm";
+import NewIssueForm from "./NewIssueForm";
 
 export default function NewIssuePage() {
   return <NewIssueForm />;
