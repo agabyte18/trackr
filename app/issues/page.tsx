@@ -1,10 +1,8 @@
 import { prisma } from "@/prisma/client";
 import Link from "next/link";
-import IssueStatusBadge from "./IssueStatusBadge";
-import delay from "delay";
-import IssuesToolbar from "./IssuesToolbar";
-import { RxAvatar } from "react-icons/rx";
 import Avatar from "../components/Avatar";
+import IssueStatusBadge from "./IssueStatusBadge";
+import IssuesToolbar from "./IssuesToolbar";
 
 export const dynamic = "force-dynamic";
 
