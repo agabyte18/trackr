@@ -12,7 +12,6 @@ export default async function IssuesPage() {
       createdAt: "desc",
     },
   });
-  // await delay(3000);
 
   return (
     <div className="container mt-5">

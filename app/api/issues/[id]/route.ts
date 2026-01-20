@@ -1,7 +1,6 @@
 import authOptions from "@/app/auth/authOptions";
 import { updateIssueSchema } from "@/app/validationSchemas";
 import { prisma } from "@/prisma/client";
-import delay from "delay";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -46,7 +45,6 @@ export async function DELETE(
 
   const { id } = await context.params;
 
-  await delay(7000);
   const issue = await prisma.issue.findUnique({ where: { id: parseInt(id) } });
 
   if (!issue) return NextResponse.json("Invalid Issue", { status: 404 });
