@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd /root/opsgoat
-git pull https://github.com/agabyte18/trackr.git
+cd /root
+git clone https://github.com/agabyte18/trackr.git
+rm -rf opsgoat && mv trackr opsgoat
+cd opsgoat
 source /root/.nvm/nvm.sh
 npm ci
 npx prisma migrate deploy
