@@ -3,7 +3,6 @@ import Link from "next/link";
 import Avatar from "../components/Avatar";
 import IssueStatusBadge from "./IssueStatusBadge";
 import IssuesToolbar from "./IssuesToolbar";
-import delay from "delay";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +12,7 @@ export default async function IssuesPage() {
       createdAt: "desc",
     },
   });
-  await delay(3000);
+  // await delay(3000);
 
   return (
     <div className="container mt-5">
