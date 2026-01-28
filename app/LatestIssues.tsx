@@ -16,7 +16,7 @@ export default async function LatestIssues() {
       <thead>
         <tr>
           <th className="ps-4 pt-4" scope="col">
-            Latest Issues
+            Latest
           </th>
         </tr>
       </thead>
