@@ -37,7 +37,7 @@ export default function IssueSummary({ open, closed, wip }: Props) {
   return (
     <div className="row">
       {cards.map((card) => (
-        <div key={card.status} className="col-md-4">
+        <div key={card.status} className="col-md-6 mb-4">
           <Link
             className="text-decoration-none"
             href={`/issues?status=${card.status}`}

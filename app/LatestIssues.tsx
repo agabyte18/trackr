@@ -7,7 +7,7 @@ export default async function LatestIssues() {
   //
   const issues = await prisma.issue.findMany({
     orderBy: { createdAt: "desc" },
-    take: 3,
+    take: 5,
     include: { user: true },
   });
 
