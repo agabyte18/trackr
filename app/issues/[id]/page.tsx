@@ -32,3 +32,15 @@ export default async function IssueDetailsPage(context: {
     </div>
   );
 }
+
+export async function generateMetadata(context: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await context.params;
+  const issue = await prisma.issue.findUnique({ where: { id: parseInt(id) } });
+
+  return {
+    title: `Trackr - ${issue?.title}`,
+    description: `Trackr - ${issue?.title}`,
+  };
+}

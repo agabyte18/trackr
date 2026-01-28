@@ -5,8 +5,14 @@ import IssueStatusBadge from "./IssueStatusBadge";
 import IssuesToolbar from "./IssuesToolbar";
 import { Status } from "../generated/prisma/enums";
 import { Issue } from "../generated/prisma/client";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Trackr - View issues",
+  description: "Trackr - View issues",
+};
 
 const columns: { label: string; value: keyof Issue; classname?: string }[] = [
   { label: "Issue", value: "title" },
