@@ -3,14 +3,34 @@ import Link from "next/link";
 import Avatar from "../components/Avatar";
 import IssueStatusBadge from "./IssueStatusBadge";
 import IssuesToolbar from "./IssuesToolbar";
+import { Status } from "../generated/prisma/enums";
+import { Issue } from "../generated/prisma/client";
 
 export const dynamic = "force-dynamic";
 
-export default async function IssuesPage() {
+const columns: { label: string; value: keyof Issue; classname?: string }[] = [
+  { label: "Issue", value: "title" },
+  { label: "Status", value: "status", classname: "d-none d-sm-table-cell" },
+  { label: "Created", value: "createdAt", classname: "d-none d-sm-table-cell" },
+];
+
+export default async function IssuesPage(context: {
+  searchParams: Promise<{ status: Status; orderBy: keyof Issue }>;
+}) {
+  //
+  const { status, orderBy } = await context.searchParams;
+
+  const validStatuses = Object.values(Status);
+
+  const validStatus = validStatuses.includes(status) ? status : undefined;
+
+  const sortBy = columns.map((col) => col.value).includes(orderBy)
+    ? { [orderBy]: "asc" }
+    : undefined;
+
   const issues = await prisma.issue.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
+    where: { status: validStatus },
+    orderBy: sortBy,
   });
 
   return (
@@ -22,17 +42,18 @@ export default async function IssuesPage() {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col">Issue</th>
-
-                {/* Hide this column on xs, show from sm and up */}
-
-                <th scope="col" className="d-none d-sm-table-cell">
-                  Status
-                </th>
-
-                <th scope="col" className="d-none d-sm-table-cell">
-                  Created
-                </th>
+                {columns.map((col) => (
+                  <th key={col.label} className={col.classname} scope="col">
+                    <Link
+                      className="text-secondary"
+                      href={{
+                        query: { status: validStatus, orderBy: col.value },
+                      }}
+                    >
+                      {col.value == orderBy ? `${col.label}👈` : col.label}
+                    </Link>
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
